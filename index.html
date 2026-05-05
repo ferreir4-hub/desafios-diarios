@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Desafios Diários</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="today-header">
+        <div>
+          <p class="eyebrow">Hoje</p>
+          <h1 id="today-date">Dia atual</h1>
+        </div>
+      </header>
+      <section class="cloud-panel" aria-labelledby="cloud-title">
+        <div>
+          <p class="section-kicker">Conta</p>
+          <h2 id="cloud-title">Guardar online</h2>
+          <p id="cloud-status">Os dados estao guardados neste dispositivo.</p>
+        </div>
+        <form class="cloud-form" id="cloud-form">
+          <input id="cloud-email" type="email" placeholder="O teu email" autocomplete="email" />
+          <button type="submit">Entrar</button>
+        </form>
+        <button class="ghost-button" id="cloud-logout" type="button" hidden>Sair</button>
+      </section>
+      <section class="today-plan" aria-labelledby="today-plan-title">
+        <p class="section-kicker">Treino planeado</p>
+        <h2 id="today-plan-title">Hoje</h2>
+        <p id="today-plan-text">Sem treino planeado.</p>
+      </section>
+      <section class="panel" aria-labelledby="challenges-title">
+        <header class="panel-header">
+          <div>
+            <p class="section-kicker">Consistência</p>
+            <h2 id="challenges-title"><span class="icon trophy" aria-hidden="true"></span> Desafios Ativos</h2>
+          </div>
+          <div class="actions">
+            <button class="ghost-button" id="suggest-challenge">Sugerir</button>
+            <button class="primary-soft-button" id="add-challenge">Criar</button>
+          </div>
+        </header>
+        <form class="challenge-form" id="challenge-form" hidden>
+          <input id="challenge-name" maxlength="34" placeholder="Nome do desafio" />
+          <input id="challenge-goal" type="number" min="1" max="365" value="30" aria-label="Meta em dias" />
+          <button type="submit">Adicionar</button>
+        </form>
+        <div class="challenge-date-control">
+          <label>Marcar/corrigir dia<input id="challenge-date" type="date" /></label>
+          <button class="ghost-button" id="challenge-date-today" type="button">Hoje</button>
+        </div>
+        <div class="challenge-list" id="challenge-list"></div>
+      </section>
+      <section class="panel water-panel" aria-labelledby="water-title">
+        <header class="panel-header">
+          <div>
+            <p class="section-kicker">Hidratação</p>
+            <h2 id="water-title"><span class="icon drop" aria-hidden="true"></span> Água</h2>
+          </div>
+          <label class="goal-control">Meta<input id="water-goal" type="number" min="0.5" max="8" step="0.1" />L</label>
+        </header>
+        <div class="water-card">
+          <div class="water-meter"><strong id="water-current">0</strong><span>/ <span id="water-target">1.5</span>L</span></div>
+          <div class="water-progress" aria-label="Progresso da água"><span id="water-progress-fill"></span></div>
+          <div class="water-actions">
+            <button class="round-button" id="water-minus" aria-label="Diminuir água">-</button>
+            <button class="round-button is-plus" id="water-plus" aria-label="Aumentar água">+</button>
+          </div>
+        </div>
+        <div class="calendar-head"><strong id="calendar-month">Mês</strong><span>Dias cumpridos</span></div>
+        <div class="weekdays" aria-hidden="true"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+        <div class="calendar-grid" id="calendar-grid" aria-label="Calendário mensal"></div>
+      </section>
+      <section class="panel" aria-labelledby="exercise-title">
+        <header class="panel-header">
+          <div>
+            <p class="section-kicker">Movimento</p>
+            <h2 id="exercise-title"><span class="icon calendar" aria-hidden="true"></span> Log de Exercícios</h2>
+          </div>
+        </header>
+        <form class="stack-form" id="exercise-form">
+          <input id="exercise-input" maxlength="60" placeholder="O que treinaste hoje?" />
+          <button type="submit">Registar</button>
+        </form>
+        <div class="log-controls">
+          <label>Consultar dia<input id="exercise-date-filter" type="date" /></label>
+          <button class="ghost-button" id="exercise-today" type="button">Hoje</button>
+        </div>
+        <ul class="log-list" id="exercise-list"></ul>
+      </section>
+      <section class="panel" aria-labelledby="weekly-plan-title">
+        <header class="panel-header">
+          <div>
+            <p class="section-kicker">Planeamento</p>
+            <h2 id="weekly-plan-title"><span class="icon plan" aria-hidden="true"></span> Semana de Treino</h2>
+          </div>
+        </header>
+        <div class="weekly-plan" id="weekly-plan"></div>
+      </section>
+      <section class="panel" aria-labelledby="notes-title">
+        <header class="panel-header">
+          <div>
+            <p class="section-kicker">Reflexão</p>
+            <h2 id="notes-title"><span class="icon note" aria-hidden="true"></span> Notas</h2>
+          </div>
+        </header>
+        <textarea id="notes" rows="5" placeholder="Como te sentes hoje?"></textarea>
+      </section>
+      <section class="panel pet-panel" aria-labelledby="pet-title">
+        <header class="panel-header">
+          <div>
+            <p class="section-kicker">Mini jogo</p>
+            <h2 id="pet-title"><span class="icon pet-icon" aria-hidden="true"></span> Cantinho do Pet</h2>
+          </div>
+          <div class="points-pill"><strong id="pet-points">0</strong> pts</div>
+        </header>
+        <div class="flash-card" id="flash-card">
+          <div class="flash-copy">
+            <p class="section-kicker">Pontos Flash</p>
+            <strong id="flash-title">Missao rapida</strong>
+            <span id="flash-description">Aceita um desafio curto para ganhar pontos extra.</span>
+          </div>
+          <div class="flash-side">
+            <span class="flash-reward" id="flash-reward">+10 pts</span>
+            <span class="flash-timer" id="flash-timer">20:00</span>
+          </div>
+          <button class="flash-button" id="flash-action" type="button">Aceitar</button>
+        </div>
+        <div class="pet-room">
+          <div class="room-items" id="room-items"></div>
+          <div class="fox-pet" id="pet-avatar" aria-label="Raposa chibi">
+            <span class="fox-ear left"></span><span class="fox-ear right"></span>
+            <span class="fox-body"><span class="fox-belly"></span><span class="fox-paw left"></span><span class="fox-paw right"></span></span>
+            <span class="fox-face"><span class="fox-eye left"></span><span class="fox-eye right"></span><span class="fox-blush left"></span><span class="fox-blush right"></span><span class="fox-snout"></span><span class="fox-mouth"></span></span>
+            <span class="fox-tail"></span>
+          </div>
+        </div>
+        <div class="pet-status">
+          <div><strong id="pet-mood">Calmo</strong><span id="pet-message">Completa desafios para deixar o pet mais contente.</span></div>
+          <div class="happiness-bar" aria-label="Felicidade do pet"><span id="pet-happiness-fill"></span></div>
+        </div>
+        <div class="shop-grid" id="shop-grid" aria-label="Loja do pet"></div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
